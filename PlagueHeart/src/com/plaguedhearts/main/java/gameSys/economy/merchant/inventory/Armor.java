@@ -1,4 +1,4 @@
-package main.java.gameSys.economy.merchant.inventory;
+package main.java.gamesys.economy.merchant.inventory;
 
 public class Armor {
     public static int armorRating;

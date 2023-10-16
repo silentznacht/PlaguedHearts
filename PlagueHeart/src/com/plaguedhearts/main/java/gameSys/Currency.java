@@ -1,4 +1,4 @@
-package main.java.gameSys;
+package main.java.gamesys;
 
 public class Currency { // Abstract class for foundation 
     public static int tokens;

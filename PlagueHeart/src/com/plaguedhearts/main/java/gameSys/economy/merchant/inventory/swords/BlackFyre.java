@@ -1,4 +1,4 @@
-package main.java.gameSys.economy.merchant.inventory.swords;
+package main.java.gamesys.economy.merchant.inventory.swords;
 
 public class BlackFyre {
     

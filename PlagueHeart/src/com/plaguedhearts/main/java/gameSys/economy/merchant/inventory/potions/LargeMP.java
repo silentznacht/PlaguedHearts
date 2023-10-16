@@ -1,6 +1,6 @@
-package main.java.gameSys.economy.merchant.inventory.potions;
+package main.java.gamesys.economy.merchant.inventory.potions;
 
-import main.java.gameSys.economy.merchant.inventory.Potion;
+import main.java.gamesys.economy.merchant.inventory.Potion;
 import main.java.player.character.Mana;
 
 public class LargeMP extends Potion {

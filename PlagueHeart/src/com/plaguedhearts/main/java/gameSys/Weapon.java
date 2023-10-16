@@ -1,4 +1,4 @@
-package main.java.gameSys;
+package main.java.gamesys;
 
 public class Weapon { // Abstract class for foundation 
     public static double dmg;
@@ -14,7 +14,7 @@ public class Weapon { // Abstract class for foundation
             Weapon.holyDmg = holyDmg;
             Weapon.fireDmg = fireDmg;
             Weapon.soulDmg = soulDmg;
-            Weapon,darkDmg = darkDmg;
+            Weapon.darkDmg = darkDmg;
     }
 
 }

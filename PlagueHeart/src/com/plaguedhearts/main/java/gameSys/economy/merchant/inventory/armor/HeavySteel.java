@@ -1,6 +1,6 @@
-package main.java.gameSys.economy.merchant.inventory.armor;
+package main.java.gamesys.economy.merchant.inventory.armor;
 
-import main.java.gameSys.economy.merchant.inventory.Armor;
+import main.java.gamesys.economy.merchant.inventory.Armor;
 import main.java.player.character.Health;
 
 public class HeavySteel extends Armor {

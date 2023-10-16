@@ -1,4 +1,4 @@
-package main.java.gameSys;
+package main.java.gamesys;
 
 public class Max {
     // Max of anything in-game

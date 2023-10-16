@@ -29,7 +29,7 @@ public class Menu {
     
     static Scanner scan = new Scanner(System.in);
     public static void main(String [] args) {
-         System.out.println ("---[GRIMORE MENU]---");
+         System.out.println ("---[PLAGUED HEARTS MENU]---");
          System.out.println("\n1. [Character Creation]");
          int userInput = scan.nextInt();
          scan.nextLine(); // consumes new line
@@ -123,7 +123,7 @@ public class Menu {
 
     }
 
-    private static boolean containsIllegalCharacters(String input) {
+    private static boolean containsIllegalCharacters(String input) { // illegal character check
         String[] illegalCharacters = {"!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", "{", "}", ";", ":", "'", "<", ">", ",", ".", "?", "/", "\\", "|", "`", "~"};
 
         for (String illegalChar : illegalCharacters) {
