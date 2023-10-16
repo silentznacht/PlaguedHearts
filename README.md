@@ -1,7 +1,7 @@
 # PlaguedHearts
 [Game Description]
 
-Title: Plague Sorcerer: Legacy Unleashed
+Title: PlaguedHearts
 
 Genre: Dark Fantasy Action-Adventure
 
