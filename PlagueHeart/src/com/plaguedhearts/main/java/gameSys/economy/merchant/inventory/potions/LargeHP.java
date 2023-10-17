@@ -1,6 +1,6 @@
 package main.java.gamesys.economy.merchant.inventory.potions;
 
-import main.java.gamesys.economy.merchant.inventory.Potion;
+import main.java.gamesys.Potion;
 import main.java.player.character.*;
 
 public class LargeHP extends Potion {

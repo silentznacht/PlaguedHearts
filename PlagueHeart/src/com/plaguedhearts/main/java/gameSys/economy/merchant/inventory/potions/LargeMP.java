@@ -1,7 +1,7 @@
 package main.java.gamesys.economy.merchant.inventory.potions;
 
-import main.java.gamesys.economy.merchant.inventory.Potion;
-import main.java.player.character.Mana;
+import main.java.gamesys.Potion;
+import main.java.player.character.*;
 
 public class LargeMP extends Potion {
     public static int mana = Mana.mana + 20; // a tempoary retainer till, future input from user to dictate stats

@@ -1,6 +1,6 @@
 package main.java.gamesys.economy.merchant.inventory.armor;
 
-import main.java.gamesys.economy.merchant.inventory.Armor;
+import main.java.gamesys.Armor;
 import main.java.player.character.Health;
 
 public class ScholarsRobes extends Armor {
@@ -13,6 +13,7 @@ public class ScholarsRobes extends Armor {
 
     public ScholarsRobes(int armorRating, int armorVal, int armorBonusesMP, int armorBonusesHP, int armorBonusesST,int armorBonusesCH) {
         super(armorRating, armorVal, armorBonusesMP, armorBonusesHP, armorBonusesST, armorBonusesCH);
+        
         
     }
     
