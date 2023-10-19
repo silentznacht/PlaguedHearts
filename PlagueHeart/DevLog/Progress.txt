@@ -3,3 +3,60 @@
 Originally this game was called Grimore, I truly wanted to make this work
 but sooner than later my interest grew stagnant. My passion for such a 
 project was in decline, and so I aim to revive this project as PlaguedHearts.
+
+10/18/23
+
+I hate school, I wish I could be talented like the other developers, I wish 
+I could just graduate already and just focus on doing things that are actually
+impactful to my life, things I could genuinely enjoy while bettering the world.
+
+Abstract Classes Implemented
+    - Potions
+        - LargeHP
+        - LargeMP
+    - Weapons
+        - BlackFyre
+        - Frostmourne
+    - Balance
+        - Bank
+            - Withdraw
+            - Deposit
+    - Armor
+        - HeavySteel
+        - LightLeather
+        - ScholarsRobes
+    - Attributes 
+        - Charisma
+        - Health
+        - Mana
+        - Stamina 
+
+Tests Implemented (DMG) 
+    - BlackFyreT
+    - FrostT
+
+10/19/23
+
+I met a girl today, she seems nice. I was in my engineering class, and she was having a hard time setting
+up her circuit (im a dunce as well), and offered to help her. Things went well, and we even laughed
+a bit (i am probably over exaggerating).
+
+I got my headphones taken away at lunch (I am not entirely sure why, I wasn't bothering anyone but oh well...)
+I went back to my seat, noticed her there. I didn't wanna come off as a creep so I said hello and sat down.
+Overall it went fairly well (i hope :3), shes a fun person (i also got her insta T.T) jesus I sound like a little girl.
+
+Anyways ... 
+
+Bank Foundation
+    - Deposit
+        - userBalance
+
+    - Withdraw
+        - userBalance
+            - userBalance -= 
+                - WithdrawAmount
+                - WithdrawRequest
+    - Currency (idk)
+
+
+

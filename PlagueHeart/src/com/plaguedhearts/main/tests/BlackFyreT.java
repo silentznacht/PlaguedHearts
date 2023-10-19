@@ -26,6 +26,6 @@ public class BlackFyreT {
     }
  
     public boolean dmgTesterB (double finalDmg) {
-        return finalDmg > 500;
+        return finalDmg < 500;
     }
 }

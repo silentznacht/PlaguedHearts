@@ -8,7 +8,7 @@ Genre: Dark Fantasy Action-Adventure
 Setting: 17th Century London, during the Black Plague
 
 Overview:
-Step into the eerie, plague-shrouded world of "Plague Sorcerer: Legacy Unleashed," a dark fantasy action-adventure game that immerses players in a treacherous journey through the depths of a cursed lineage.
+Step into the eerie, plague-shrouded world of "PlaguedHearts," a dark fantasy action-adventure game that immerses players in a treacherous journey through the depths of a cursed lineage.
 
 Features:
 
