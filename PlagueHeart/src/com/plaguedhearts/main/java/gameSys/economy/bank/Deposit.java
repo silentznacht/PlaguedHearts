@@ -49,5 +49,5 @@ public class Deposit extends Bank {
     
     public static void main(String[] args) {
         Withdraw.withdraw();
-    }
+    }  
 }

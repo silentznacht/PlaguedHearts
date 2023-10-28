@@ -5,21 +5,17 @@ import java.util.Scanner;
 import main.java.gamesys.Bank;
 
 public class Withdraw extends Bank {
-    public Withdraw(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
-        super(userBalance, userCredits, userPoints, userOverallBalance);
-        Withdraw.userOverallBalance = userOverallBalance;
-    }
-
-
-
     private static int balance = Bank.userBalance;
     private static int withdrawAmount;
     private static int withDrawRequest = ((int) (balance - withdrawAmount));
     public static int userOverallB = userOverallBalance;
     public static Scanner userInput = new Scanner(System.in);
 
+    public Withdraw(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
+        super(userBalance, userCredits, userPoints, userOverallBalance);
+        Withdraw.userOverallBalance = userOverallBalance;
+    }
     
-
     public static void withdraw() {
         String chosen;
         int withdrawRequest;

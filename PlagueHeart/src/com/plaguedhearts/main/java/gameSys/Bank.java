@@ -1,7 +1,7 @@
 package main.java.gamesys;
 
 public class Bank {
-    protected static int userBalance;
+    public static int userBalance;
     protected static int userCredits;
     protected static int userPoints;
     protected static int userOverallBalance;

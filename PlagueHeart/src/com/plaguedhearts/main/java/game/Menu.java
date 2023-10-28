@@ -16,9 +16,6 @@ public class Menu {
     public static ArrayList <String> raceList = new ArrayList<String>();
     public static ArrayList <String> nameList = new ArrayList<String>();
 
-    private static String displayName;
-    private static String displayRace;
-
     public static boolean humanRace = false;
     public static boolean vampireRace = false;
     public static boolean beastFolkRace = false;
@@ -50,56 +47,6 @@ public class Menu {
 
     }
 
-    public static void userHandler() {
-         
-    }
-
-
-    public static String raceSelect() { 
-
-        String [] races = {"Beastfolk", "Human", "Vampire"};
-
-        /* 
-            Creates a String data structure to save any detected input from user on race selection. 
-            Then stores that race detection
-        */
-
-        boolean validRace = false; // counter for iterative loop
-        String chosenRace = "";
-
-        System.out.println("[RACES]\n");
-        for (String race:races) {
-            System.out.println(race);
-        }
-
-        /*
-         * The purpose of while (!falseRace) is to create a loop that continues to execute as long as falseRace 
-         * is false. In other words, it keeps looping until the value of falseRace becomes true.
-         */
-
-        while (!validRace) { // keeps looping until user input matches an element within the array, then assigns that input to an empty variable named chosenRace
-             System.out.println("\nEnter your preferred race of choosing?: ");
-             String selectRace = scan.nextLine();
-             
-                if (Arrays.asList(races).contains(selectRace) || (Arrays.stream(races).map(String::toLowerCase).anyMatch(selectRace::equals))) {
-                    raceMethodComplete = true;
-                    chosenRace = selectRace;
-                    raceList.add(chosenRace);
-                    validRace = true;
-                } else {
-                    System.out.println("[Sorry Invalid Race Inputted, Try Again]");
-                }
-        }
- 
-        switch (chosenRace) {
-            case "Human" -> humanRace = true;
-            case "Vampire" -> vampireRace = true;
-            case "Beastfolk" -> beastFolkRace = true;
-        }
-        
-        return displayRace = chosenRace;
-    }
-
     public static String nameSelect() {
         // Asks user to name character, if the input has invalid characters or numbers it will warn the user
         boolean falseName = false;
@@ -119,8 +66,7 @@ public class Menu {
                          falseName = true;
                   }
             }
-            return displayName = chosenName;
-
+        return chosenName;
     }
 
     private static boolean containsIllegalCharacters(String input) { // illegal character check
@@ -135,14 +81,12 @@ public class Menu {
         return false;
     }
 
-    public static void save() {
+    public static void save() { // TODO: Add chosen name to arraylist
         // Allows user to change later on
-        ArrayList<String> race = raceList;
         ArrayList<String> name = nameList;
     }
     
     static void sequenceBuddy() {
-            raceSelect();
             if (raceMethodComplete == true) nameSelect();
             if (nameMethodComplete == true) fin();
 
