@@ -2,14 +2,26 @@ package main.java.game.navagation.kravenwares;
 
 import java.util.Scanner;
 
+import main.java.game.Map;
 import main.java.gamesys.economy.merchant.inventory.*;
 import main.java.gamesys.economy.merchant.inventory.armor.HeavySteel;
 import main.java.gamesys.economy.merchant.inventory.armor.LightLeather;
 import main.java.gamesys.economy.merchant.inventory.armor.ScholarsRobes;
 
-public class KravenWares {
+public class KravenWares extends Map{
 
+
+    public KravenWares(int userLocationX, int userLocationY, int kWaresLocationX, int kWaresLocationY,
+            int pInnLocationX, int pInnLocationY) {
+        super(userLocationX, userLocationY, kWaresLocationX, kWaresLocationY, pInnLocationX, pInnLocationY);
+        //TODO Auto-generated constructor stub
+    }
+
+    // Location
+    private static int locationX = kWaresLocationX;
+    private static int locationY = kWaresLocationY;
     static Scanner sc = new Scanner(System.in);
+
     // Armors -> Heavy
     private static int hArmorVal = HeavySteel.armorVal;
     private static int hArmorRating = HeavySteel.armorRating;
@@ -50,9 +62,9 @@ public class KravenWares {
     }
 
     static void displayArmors() {
-        heavySteel();
-        scholarRobes();
-        lightLeather();
+        System.out.println(heavySteel());
+        System.out.println(scholarRobes());
+        System.out.println(lightLeather());
     }
 
     public static void main(String [] args) {
@@ -70,39 +82,38 @@ public class KravenWares {
             """
         );
 
-        boolean continueLoop = false;
+        boolean continueLoop = false; 
         int userChoice = sc.nextInt();
-
-        if (userChoice > 3 || userChoice <= 0) { // If invalid option shown
-             while (!continueLoop) {
-                    System.out.println (
-                        """
-                            [Invalid Option]
-                            [Enter Below]:   
-                        """
-                    );
-
-                        switch (userChoice) {
-                            case 1:
-                                continueLoop = true;
-                                displayArmors();
-                            case 2:
-                                // TODO: method nested here to handle transactions (SELL)
-                            case 3:
-                                System.exit(0);
-                        }
-
-                    }
-                } 
-
-        switch(userChoice) {
+        
+            switch (userChoice) {
                 case 1:
                     continueLoop = true;
                     displayArmors();
                 case 2:
-                    // TODO: method nested here to handle transactions (SELL)
+                    // TODO: Handle transactions here
                 case 3:
-                    System.exit(0);
+                    System.exit(0); // tempoary
             }
+
+            while(!continueLoop) {
+                 System.out.println (
+                        """
+                        
+                        [ERROR : INVALID ANSWER]
+                        1. [Inventory]
+                        2. [Sell]
+                        3. [Exit]
+
+                        [Enter Below]: 
+                        """
+                    );
+
+                userChoice = sc.nextInt();
+                 switch (userChoice) {
+                        case 1:
+                            continueLoop = true;
+                            displayArmors();
+                }
+        }
     }
 }
