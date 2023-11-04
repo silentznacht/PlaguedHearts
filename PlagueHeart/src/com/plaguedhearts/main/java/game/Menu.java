@@ -15,19 +15,13 @@ public class Menu {
 
     public static ArrayList <String> raceList = new ArrayList<String>();
     public static ArrayList <String> nameList = new ArrayList<String>();
-
-    public static boolean humanRace = false;
-    public static boolean vampireRace = false;
-    public static boolean beastFolkRace = false;
-
-    private static boolean raceMethodComplete = false;
     private static boolean nameMethodComplete = false;
 
     
     static Scanner scan = new Scanner(System.in);
     public static void main(String [] args) {
          System.out.println ("---[PLAGUED HEARTS MENU]---");
-         System.out.println("\n1. [Character Creation]");
+         System.out.println("\n1. [Character Creation]" + "\n2. []");
          int userInput = scan.nextInt();
          scan.nextLine(); // consumes new line
 
@@ -87,7 +81,7 @@ public class Menu {
     }
     
     static void sequenceBuddy() {
-            if (raceMethodComplete == true) nameSelect();
+            nameSelect();
             if (nameMethodComplete == true) fin();
 
     }

@@ -85,11 +85,11 @@ public class PrologueDia {
     }
     
     public static void main(String [] args) { // Test method outputs
-        seg1();
-        seg2();
-        seg3();
-        seg4();
-        seg5();
-        seg6();
+            seg1();
+            seg2();
+            seg3();
+            seg4();
+            seg5();
+            seg6();
     }
 }

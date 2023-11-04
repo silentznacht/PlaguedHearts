@@ -1,10 +1,10 @@
-package main.java.game.missions.week1;
+package main.java.game.navagation.tavern;
 
 import java.util.*;
 import main.java.game.dialogue.NPC;
 import main.java.gamesys.Bank;
 
-public class Day1 {
+public class TavernJob {
     /*
      *              Day Quota
      *       Attend to 5 customers, and reach 100 coins by the end of day 1
@@ -22,23 +22,34 @@ public class Day1 {
      * TODO: Use switch case to sort out user input
      */
     
+     // Prices 
+     private static int olCopperPrice = 4;
+     private static int devilsBreathPrice = 6;
+     private static int grosluxSpecialPrice = 10;
+     private static int nurglesNectorPrice = 5;
+     private static int pesilencePromisePrice = 20;
+     private static int remedyRumPrice = 15;
+
+     // Scanner & characters, drinks, actions (randomized)
      private static Scanner day1SC = new Scanner(System.in);
      private static String [] drinks  = NPC.drinks;
      private static String [] characters = NPC.characters;
      private static String [] actions = NPC.actions;
 
+     // Profits
      private static int balance = Bank.userBalance;
-     private static int coinEarned;
+     private static int coinEarned = 0;
      private static int userProfits = coinEarned + balance;
      private static int customersSatisfied = 0;
 
+     // Reputation
      private static boolean customerEarned;
      private static Random random;
 
 
      static void menu() {
             for (int i = 0; i < drinks.length; i ++) {
-                System.out.println(Arrays.toString(drinks));
+                System.out.println(drinks[i]);
             }
      }
 
@@ -47,12 +58,22 @@ public class Day1 {
             String character = characters[random.nextInt(characters.length)];
             String drink = drinks[random.nextInt(drinks.length)];
             String action = actions[random.nextInt(actions.length)];
-            return character + ": "  +  " " + action + " " + drink;
+            String dialogue = character + ": "  +  " " + action + " " + drink;
+
+            return dialogue;
         }
-     public static void main(String [] args) { //TODO: Generate customers, when success customerCount will increase, and so will profit
-            System.out.println("    [ Day1 : Tavern of Groslux ]");
-            Day1 d1 = new Day1();
-            
+
+       
+     public static void main(String [] args) { 
+              System.out.println("    [ The Pissin' Inn ]");
+              random = new Random();
+              String customerDialogue = customerDialogue();
+              System.out.println(customerDialogue);
+
+              while (true) { // TODO: Implement question or task for user to earn customers coin
+                    System.out.println(""); 
+              }
+              
      }
 
 
