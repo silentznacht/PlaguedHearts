@@ -2,10 +2,6 @@ package main.java.game.dialogue;
 
 import java.util.Random;
 
-import java.util.Random;
-
-import java.util.Random;
-
 public class NPC {
     public static String[] characters = {"Sir Reginald", "Lady Elara", "Barkeep", "Bard"};
     public static String[] locations = {"in a dimly lit tavern", "by the roaring fireplace", "under the flickering candlelight"};

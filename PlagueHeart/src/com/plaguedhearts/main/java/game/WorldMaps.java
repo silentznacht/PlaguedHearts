@@ -28,5 +28,7 @@ public class WorldMaps {
     // The Pissin' Inn Location
     protected static int pInnLocationX = 3;
     protected static int pInnLocationY = 5;
+
+    // 
     
 }

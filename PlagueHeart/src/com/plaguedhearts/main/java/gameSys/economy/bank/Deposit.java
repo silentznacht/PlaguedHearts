@@ -11,7 +11,6 @@ public class Deposit extends Bank {
 
     public Deposit(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
         super(userBalance, userCredits, userPoints, userOverallBalance);
-        //TODO Auto-generated constructor stub
     }
 
     public static void withdraw() {

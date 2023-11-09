@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class Test {
     private static ArrayList<String> raceList = new ArrayList<>();
     private static ArrayList<String> nameList = new ArrayList<>();
-    private static String displayName;
-    private static String displayRace;
     private static boolean humanRace = false;
     private static boolean vampireRace = false;
     private static boolean beastFolkRace = false;
@@ -73,7 +71,7 @@ public class Test {
             case "Beastfolk" -> beastFolkRace = true;
         }
 
-        return displayRace = chosenRace;
+        return chosenRace;
     }
 
     public static String nameSelect() {
@@ -94,13 +92,7 @@ public class Test {
                 System.out.println("[Sorry Invalid Characters Inputted, Try Again]");
             }
         }
-        return displayName = chosenName;
-    }
-
-    private static void save() {
-        ArrayList<String> race = raceList;
-        ArrayList<String> name = nameList;
-        // Your save logic here
+        return chosenName;
     }
 
     static void sequenceBuddy() {

@@ -12,9 +12,4 @@ public class Attributes {
             Attributes.mana = mana;
             Attributes.stamina = stamina;
     }
-
-    static void idk() {
-        System.out.print("hello world");
-    }
-
 }

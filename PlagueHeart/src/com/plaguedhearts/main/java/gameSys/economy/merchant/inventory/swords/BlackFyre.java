@@ -1,7 +1,5 @@
 package main.java.gamesys.economy.merchant.inventory.swords;
 
-import java.util.WeakHashMap;
-
 import main.java.gamesys.Weapon;
 
 public class BlackFyre extends Weapon {

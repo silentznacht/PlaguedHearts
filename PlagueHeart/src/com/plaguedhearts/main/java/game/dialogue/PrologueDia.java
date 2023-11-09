@@ -2,7 +2,7 @@ package main.java.game.dialogue;
 
 public class PrologueDia {
     
-    public static void seg1 () { // TODO: Implement multi string to all methods
+    public static void seg1 () {
             System.out.println (   
 
                 """

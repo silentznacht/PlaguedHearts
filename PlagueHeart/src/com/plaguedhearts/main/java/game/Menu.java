@@ -75,10 +75,6 @@ public class Menu {
         return false;
     }
 
-    public static void save() { // TODO: Add chosen name to arraylist
-        // Allows user to change later on
-        ArrayList<String> name = nameList;
-    }
     
     static void sequenceBuddy() {
             nameSelect();
