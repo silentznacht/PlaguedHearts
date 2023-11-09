@@ -121,7 +121,8 @@ public class KravenWares extends Bank {
 
     static void handleTrans(boolean loopContinue) { 
         /*
-         * TODO:
+         *
+         *                                                            TODO:
          *      Implement hashmap, use for loop to loop through an array of string element (items), then assign it's key as a value
          *      Then create a search algorithm to find the item name and value according to the users input
          *      finally assign the purchased element to the users inventory
@@ -136,10 +137,22 @@ public class KravenWares extends Bank {
 
                 for (int i = 0; i < itemNames.length; i++) {
                     if (chosenItem.equalsIgnoreCase(itemNames[i])) {
-                        System.out.println("You have purchased: " + chosenItem + " for " + itemPrices[i] + " coins.");
-                        myInventory.put(itemNames[i], itemPrices[i]); // updates the user's inventory or balance here.
-                        itemFound = true;
-                        loopContinue = true;
+                        // add balance checker next (subtracts user balance from coins / checks if user has enough funds)
+                            if (userBalance >= itemPrices[i]) {
+                                    System.out.println("You have purchased: " + chosenItem + " for " + itemPrices[i] + " coins.");
+                                    myInventory.put(itemNames[i], itemPrices[i]); // updates the user's inventory or balance here.
+                                       itemFound = true;
+                                       loopContinue = true;
+                                       break;
+                            } else {
+                                    System.out.println("\n[Sorry ol' Lad insufficient funds, Try a different item]");
+                            }
+
+                    }
+
+                    // return to shop menu
+                    if (chosenItem.equalsIgnoreCase("exit")) {
+                        main(itemNames);
                         break;
                     }
                 }
@@ -149,8 +162,42 @@ public class KravenWares extends Bank {
                 }
         }
     }
+    
+    //  TEST
+    
+    static void sellTrans(boolean loopContinue) {
+        //myInventory.put("test", blackFVal);
+        System.out.println("\n[Enter Item To Sell]: ");
+        sc.nextLine();
+        String chosenItem = sc.nextLine();
+        boolean itemFound = false;
 
-    public static void main(String [] args) {
+        while (!itemFound) {
+            if (myInventory.containsKey(chosenItem)) {
+                    int itemValue = myInventory.get(chosenItem);
+                    System.out.println("Item found! Item name: " + chosenItem + ", Value: " + itemValue);
+                    System.out.println("\n[Do you wish to sell? (yes/no)]: ");
+                    String userChoice = sc.nextLine().toLowerCase();  // Convert user input to lowercase for case-insensitive comparisons.
+            
+                            if (userChoice.equals("yes") || userChoice.equals("y")) {
+                                // Sell the item and update the user balance.
+                                userBalance += itemValue;
+                                System.out.println("User's balance updated. New balance: " + userBalance);
+                                itemFound = true;
+                            } else if (userChoice.equals("no") || userChoice.equals("n")) {
+                                // returns to menu
+                                main(itemNames);
+                            } else {
+                                System.out.println("Invalid choice. Please enter 'yes' or 'no'.");
+                            }
+            } else {
+                System.out.println("Item not found in inventory.");
+                // Handle the case where the item is not found.
+                break;  // Exit the loop since the item was not found.
+            }
+        }
+    }
+public static void main(String [] args) {
         System.out.println (
             """
                                     [Kraven's Wares] 
@@ -176,7 +223,7 @@ public class KravenWares extends Bank {
                     continueLoop = true;
                 case 2:
                     // TODO: Handle transactions here : test
-                    handleTrans(continueLoop);
+                    sellTrans(continueLoop);
                     continueLoop = true;
                 case 3:
                     System.exit(0); // tempoary
