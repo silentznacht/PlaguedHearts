@@ -13,31 +13,37 @@ public class Menu {
      * 
      */
 
-    public static ArrayList <String> raceList = new ArrayList<String>();
+
     public static ArrayList <String> nameList = new ArrayList<String>();
     private static boolean nameMethodComplete = false;
 
     
     static Scanner scan = new Scanner(System.in);
+    /*
+     *                      TODO
+     *         [Redo Menu]
+     *              - new game -> character creation
+     *              - continue -> saved data
+     *              - exit -> exit game()
+     *              - settings -> adjust enemy difficulties
+     */
     public static void main(String [] args) {
-         System.out.println ("---[PLAGUED HEARTS MENU]---");
-         System.out.println("\n1. [Character Creation]" + "\n2. []");
-         int userInput = scan.nextInt();
-         scan.nextLine(); // consumes new line
+            System.out.println ("---[PLAGUED HEARTS MENU]---");
+            System.out.println("\n1. [Character Creation]" + "\n2. []");
+            int userInput = scan.nextInt();
+            scan.nextLine(); // consumes new line
 
-            switch(userInput) { // in progress
-                case 1:
-                    sequenceBuddy();
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    System.out.println("Invalid input.");
-            }
-
-        
+                    switch(userInput) { // in progress
+                        case 1:
+                            sequenceBuddy();
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Invalid input.");
+                    }  
 
     }
 
@@ -83,7 +89,7 @@ public class Menu {
     }
 
 
-    static void fin() {
+    static void fin() { // finishing character creation options
         System.out.print("\n[Finalize]" + "\n[(Y/N)]: ");
         String proceed = scan.nextLine();
         boolean endLoop = false;
