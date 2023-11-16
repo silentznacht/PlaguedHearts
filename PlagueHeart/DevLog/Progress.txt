@@ -60,3 +60,9 @@ Bank Foundation
 
 
 
+11/16/23
+
+Bug Fixes
+    - KravenWares (menu invalid displays)
+        - menu loop kept continuing
+            - FIXED: break statement used to end loop move to following method

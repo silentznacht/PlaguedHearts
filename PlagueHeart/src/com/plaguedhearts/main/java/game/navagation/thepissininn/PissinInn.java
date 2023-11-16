@@ -1,10 +1,10 @@
-package main.java.game.navagation.tavern;
+package main.java.game.navagation.thepissininn;
 
 import java.util.*;
 import main.java.game.dialogue.NPC;
 import main.java.gamesys.Bank;
 
-public class TavernJob {
+public class PissinInn {
     /*
      *              Day Quota
      *       Attend to 5 customers, and reach 100 coins by the end of day 1

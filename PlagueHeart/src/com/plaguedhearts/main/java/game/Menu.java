@@ -29,7 +29,7 @@ public class Menu {
      */
     public static void main(String [] args) {
             System.out.println ("---[PLAGUED HEARTS MENU]---");
-            System.out.println("\n1. [Character Creation]" + "\n2. []");
+            System.out.println("\n1. [New Game]" + "\n2. [Continue...]" + "\n[Settings]" + "\n[Exit]");
             int userInput = scan.nextInt();
             scan.nextLine(); // consumes new line
 
@@ -40,6 +40,8 @@ public class Menu {
                         case 2:
                             break;
                         case 3:
+                            break;
+                        case 4:
                             break;
                         default:
                             System.out.println("Invalid input.");

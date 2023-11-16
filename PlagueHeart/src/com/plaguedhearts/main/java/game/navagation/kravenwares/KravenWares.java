@@ -21,8 +21,8 @@ public class KravenWares extends Bank {
 
     // Location
     static WorldMaps wM = new WorldMaps();
-    private static int locationX = WorldMaps.kWaresLocationX;
-    private static int locationY = WorldMaps.kWaresLocationY;
+    private static final int locationX = WorldMaps.kWaresLocationX;
+    private static final int locationY = WorldMaps.kWaresLocationY;
     static Scanner sc = new Scanner(System.in);
 
     // Sell & Buy (User Balance)
@@ -128,43 +128,47 @@ public class KravenWares extends Bank {
          *      finally assign the purchased element to the users inventory
          */
 
-
+        sc.nextLine();
         while (!loopContinue) {
              System.out.println("\n[Enter Wanted Item Name]: ");
-             sc.nextLine(); // consumes remaining line
              String chosenItem = sc.nextLine();
-             boolean itemFound = false;
+             //boolean itemFound = false;
 
+               // return to shop menu
+                if (chosenItem.equalsIgnoreCase("exit")) {
+                        menu();
+                        break;
+                }
+
+                boolean itemFound = false;
+                
                 for (int i = 0; i < itemNames.length; i++) {
                     if (chosenItem.equalsIgnoreCase(itemNames[i])) {
                         // add balance checker next (subtracts user balance from coins / checks if user has enough funds)
                             if (userBalance >= itemPrices[i]) {
                                     System.out.println("You have purchased: " + chosenItem + " for " + itemPrices[i] + " coins.");
-                                    myInventory.put(itemNames[i], itemPrices[i]); // updates the user's inventory or balance here.
-                                       itemFound = true;
-                                       loopContinue = true;
-                                       break;
+                                    myInventory.put(itemNames[i], itemPrices[i]); // updates the user's inventory
+                                    userBalance -= itemPrices[i]; // updates users balance
+                                    itemFound = true;
+                                    loopContinue = true;
+                                    break;
                             } else {
                                     System.out.println("\n[Sorry ol' Lad insufficient funds, Try a different item]");
+                                    itemFound = true;
+                                    break;
                             }
 
-                    }
-
-                    // return to shop menu
-                    if (chosenItem.equalsIgnoreCase("exit")) {
-                        main(itemNames);
-                        break;
                     }
                 }
 
                 if (!itemFound) {
                     System.out.println("\n[Item not found. Please enter a valid item name.]");
+                   
                 }
         }
     }
     
     //  TEST
-    
     static void sellTrans(boolean loopContinue) {
         //myInventory.put("test", blackFVal);
         System.out.println("\n[Enter Item To Sell]: ");
@@ -186,7 +190,7 @@ public class KravenWares extends Bank {
                                 itemFound = true;
                             } else if (userChoice.equals("no") || userChoice.equals("n")) {
                                 // returns to menu
-                                main(itemNames);
+                                    menu();
                             } else {
                                 System.out.println("Invalid choice. Please enter 'yes' or 'no'.");
                             }
@@ -197,7 +201,8 @@ public class KravenWares extends Bank {
             }
         }
     }
-public static void main(String [] args) {
+
+   static void menu () {
         System.out.println (
             """
                                     [Kraven's Wares] 
@@ -215,16 +220,18 @@ public static void main(String [] args) {
         boolean continueLoop = false; 
         int userChoice = sc.nextInt();
         
-            switch (userChoice) {
+            switch (userChoice) { 
                 case 1:
                     displayArmors();
                     displaySwords();
                     handleTrans(continueLoop);
                     continueLoop = true;
+                    break;
                 case 2:
                     // TODO: Handle transactions here : test
                     sellTrans(continueLoop);
                     continueLoop = true;
+                    break;
                 case 3:
                     System.exit(0); // tempoary
             }
@@ -243,11 +250,15 @@ public static void main(String [] args) {
                     );
 
                 userChoice = sc.nextInt();
-                 switch (userChoice) {
-                        case 1:
-                            continueLoop = true;
-                            displayArmors();
+                        switch (userChoice) {
+                                case 1:
+                                    continueLoop = true;
+                                    displayArmors();
+                        }
                 }
         }
-    }
+
+        public static void main(String [] args) {
+            menu();
+        }
 }
