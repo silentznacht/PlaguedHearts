@@ -14,11 +14,37 @@ public class NPC {
         "The latest rumors from the kingdom's court",
         "The quality of the ale in this tavern"
     };
-    private String[] drinkQuestions = {
+    
+    public String[] drinkQuestions = {
         "What's the finest ale you have on tap?",
         "Do you have any special brews today?",
         "Can you recommend a drink to warm the bones on a cold night?",
         "Tell me, what's the secret recipe of your famous mead?"
+    };
+
+    
+     // Questions || Barkeep (why didn't i just initialize this locally?)
+
+     public static String[] questions = {
+        "Which family wields the ability 'ROT' granted by Nurgle?",
+        "What is the unique ability possessed by the Maladictus family?",
+        "What noble family founded the Pestisdictus Hospitals Foundation?",
+        "What kind of discharge do Viruliths release using their 'ROT' ability?",
+        "Who can reverse the chaotic effects caused by the 'FRENZY' ability of the Maladictus family?",
+        "What is the primary focus of the Morbidius family's contributions to Pestisdictus?",
+        "What is the unique power granted by the 'BLIGHT' ability of the Morbidius family?"
+        // Add more questions here...
+    };
+
+    public static String[] answers = {
+        "Virulith",
+        "FRENZY",
+        "Morbidius",
+        "Infectious diseases causing rapid decay",
+        "Few individuals from the Morbidius family",
+        "Advancing medicine and human biology, founding hospitals",
+        "Transmuting living organisms with infectious bacteria"
+        // Add corresponding answers here...
     };
 
     private Random random;

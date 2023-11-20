@@ -66,3 +66,8 @@ Bug Fixes
     - KravenWares (menu invalid displays)
         - menu loop kept continuing
             - FIXED: break statement used to end loop move to following method
+        - transaction handler invalidity (no item found error loop & insufficent funds)
+            - adds sc.nextLine() above loop to consume line before jump
+                - FUCKING BULLSHIT THAT BUG TOOK 3 FUCKING WEEKS JUST FOR ONE LINE FUCKING BULLSHIT TO THE HIGHEST DEGREE
+                    - Only god knows what ever the fuck is going on in that shop file
+        

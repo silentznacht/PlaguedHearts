@@ -128,7 +128,7 @@ public class KravenWares extends Bank {
          *      finally assign the purchased element to the users inventory
          */
 
-        sc.nextLine();
+        sc.nextLine(); // consumes line 
         while (!loopContinue) {
              System.out.println("\n[Enter Wanted Item Name]: ");
              String chosenItem = sc.nextLine();
@@ -225,7 +225,7 @@ public class KravenWares extends Bank {
                     displayArmors();
                     displaySwords();
                     handleTrans(continueLoop);
-                    continueLoop = true;
+                    continueLoop = true; // cancels out while loop below
                     break;
                 case 2:
                     // TODO: Handle transactions here : test
@@ -233,7 +233,7 @@ public class KravenWares extends Bank {
                     continueLoop = true;
                     break;
                 case 3:
-                    System.exit(0); // tempoary
+                    System.exit(0); // temporary
             }
 
             while(!continueLoop) {
