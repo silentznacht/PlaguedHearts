@@ -1,12 +1,10 @@
 package main.java.game.navagation.thepissininn;
 
-import static org.junit.Assert.fail;
-
 import java.util.*;
 import main.java.game.dialogue.NPC;
 import main.java.gamesys.Bank;
 
-public class PissinInn {
+public class PissinInn extends Bank {
     /*
      *              Day Quota
      *       Attend to 5 customers, and reach 100 coins by the end of day 1
@@ -24,6 +22,11 @@ public class PissinInn {
      * TODO: Use switch case to sort out user input
      */
     
+     public PissinInn(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
+        super(userBalance, userCredits, userPoints, userOverallBalance);
+        //TODO Auto-generated constructor stub
+     }
+    
      // Prices 
      private static int olCopperPrice = 4;
      private static int devilsBreathPrice = 6;
@@ -40,7 +43,10 @@ public class PissinInn {
      private static String [] actions = NPC.actions;
      private static String [] questions = NPC.questions;
      private static String [] answers = NPC.answers;
-
+     private static String [] mixBook = NPC.mixBook;
+     private static String [] mixBookAnswers = NPC.mixBookAnswera;
+     private static String [] insults = NPC.drinkRelatedInsults;
+ 
      // Profits || Currency
      private static int balance = Bank.userBalance;
      private static int coinEarned = 0;
@@ -64,6 +70,7 @@ public class PissinInn {
                 pesilencePromisePrice, remedyRumPrice
             };
 
+
             String [] drink = NPC.drinks;
             while(k <= drink.length) {if (k >= drinks.length) break; System.out.println("[Drink]: " + drink[k].trim() + " (Price): " + drinksPrices[k]); k++;}
         
@@ -73,47 +80,65 @@ public class PissinInn {
 
     }
 
-    static void tavernJob(int custCount) { // TODO: Allows user to give customers requested drinks, and earn coin
-       int randomIndex = random.nextInt(questions.length);
-       int questCount = 0;
-       int dayCount = 0;
-       int dexCount = 0;
-       int mx = (int) Integer.MAX_VALUE;
-
-       String customers = PissinInn.customerDialogue();
-       String currentQuestion = questions[randomIndex];
-       String answer = answers[randomIndex];
-
-       boolean cycle = false;
-       boolean questionForward = false; // will enable when user chooses to leave activity or not
-       //tavernScan.nextLine();   
-
-            while (dayCount <= mx) {
-                    dayCount++; // days in progress ( count )
-                    while (!cycle) { // TODO: come up with a game for user 
-                        custCount ++;
-                        dexCount++;
-                        System.out.println("Customer (" + custCount + ") " + customers);
-                        System.out.println("\n          [Mini Game]\n\n");
-                            for (int i = 0; i < answers.length; i++) { // Outputs answer choices
-                                questCount ++; // counts amount of quests attempted ie for probablity rate later
-                                System.out.println("[Question]: " + " (" + currentQuestion + ")");
-                                System.out.println(answers[i]);
-                                int userChoice = tavernScan.nextInt();
-                                int answerChosen = userChoice;
-
-
-                                        if (answerChosen != dexCount) { // LOGIC: Answer doesn't match Question index -> wrong ? right
-                                            System.out.println("[Alert: Sorry Incorrect Answer]");
-                                        } else {
-                                            System.out.println("[HAZRAAARRRJRJR]");
-                                        }
-                            }
-                    } 
+    static void tavernJob() { // Handles tavern job -> sends user to handle drinks, and display drinks
+        System.out.println("\n        [Mini Game]\n\n");
+        Scanner tavernScan = new Scanner(System.in);
+        
+        boolean servingDrinks = true;
+    
+        while (servingDrinks) {
+            System.out.println("[ORDER]: " + PissinInn.customerDialogue());
+            System.out.println("[Answer(Mix) -> (What drink did the customer ask for?) Use H for help]: ");
+    
+            String userAnswer = tavernScan.nextLine();
+    
+            if (userAnswer.equalsIgnoreCase("help") || userAnswer.equalsIgnoreCase("h")) { // help menu
+                displayDrinkMenu();
+            } else { 
+                handleDrinkOrder(userAnswer);
             }
-           
+    
+            System.out.println("Do you want to continue serving drinks (Y/N)?");
+            String continueOption = tavernScan.nextLine();
+            if (!continueOption.equalsIgnoreCase("Y")) { // means continueOption stays false when user input is anything other than "Y", thus ending the loop
+                servingDrinks = false;                                 // Y -> exit (stop serving drinks)
+            }
+        }
+    
+        tavernScan.close();
     }
+    
+    static void displayDrinkMenu() {
+        System.out.println("\n        [Mix Book: Drinks]\n");
+        for (String drink : drinks) {
+            System.out.println("(" + drink + ")");
+        }
+    }
+    
+    static void handleDrinkOrder(String userAnswer) {
+        boolean drinkFound = false;
+    
+        for (String drink : drinks) { // if the user matches the customers requested drink then it will move onto the tavern mini game 
+            if (userAnswer.equalsIgnoreCase(drink)) {
+                drinkFound = true;
+                System.out.println("[Now Enter The Proper Mix For " + drink + " (Use H for help)]: ");
+                // Implement logic for mixing the drink here
+                tavernMiniGame();
+                break;
+            }
+        }
+    
+        if (!drinkFound) {
+            System.out.println("\n[Alert: Sorry Invalid Answer]\n");
+        }
+    }
+    
+    static void tavernMiniGame() {
+        // Implement your mini-game logic here
 
+        
+    }
+    
     static void sellTrans() {
 
     }
@@ -142,23 +167,20 @@ public class PissinInn {
                     tranHandler();
                     loopCheck = true;
                     break;
-
                 case 2:
-
+                    //
                 case 3:
-                    tavernJob(0);
-
+                    tavernJob();
+                    break;
                 case 4:
                     System.exit(0);
-
-
             }
 
 
 
     }
      public static void main(String [] args) { 
-        tavernJob(0);
+            tavernJob();
      }
 
 }

@@ -70,4 +70,14 @@ Bug Fixes
             - adds sc.nextLine() above loop to consume line before jump
                 - FUCKING BULLSHIT THAT BUG TOOK 3 FUCKING WEEKS JUST FOR ONE LINE FUCKING BULLSHIT TO THE HIGHEST DEGREE
                     - Only god knows what ever the fuck is going on in that shop file
-        
+
+11/20/23
+
+Things Learned
+    - PissinInn(customer change)
+        - I was cnofused why customer dialogue was not being generated randomly, everytime the user wishes to answer a customer or use the mixbook
+            - (ISSUE) I was using a variable and assigned the method generating dialogue onto the variable, meaning the value being returned in the method
+              will instead be called once and assigned (non change), this is fixed by instead deleting the dead variable and calling the method instead on 
+              output
+
+        - 

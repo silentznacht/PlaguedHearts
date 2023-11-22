@@ -12,7 +12,8 @@
         "Morbidius",
         "Nurgle",
         "Pestisdictus",
-        "Pissin"
+        "Pissin",
+        "RRECT"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
