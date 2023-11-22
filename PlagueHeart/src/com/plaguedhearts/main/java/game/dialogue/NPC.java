@@ -43,12 +43,12 @@ public class NPC {
 
     
     public static String [] mixBookAnswera = {
-        "Ol'Copper: Green + Grey",
-        "Devil's Breath: Orange + Purple", 
-        "Groslux Special: Green + Red", 
-        "Nurgle's Nectar: Green + Blue", 
-        "Pestilence's Promise: Black + Green", 
-        "Remedy Rum: Brown + Yellow"
+        "1) Green + Grey",
+        "2) Devil's Breath: Orange + Purple", 
+        "3) Groslux Special: Green + Red", 
+        "4) Nurgle's Nectar: Green + Blue", 
+        "5) Pestilence's Promise: Black + Green", 
+        "6) Remedy Rum: Brown + Yellow"
     };
     public static String [] mixBook = {
         "Ol'Copper: Green + Grey",
