@@ -49,8 +49,6 @@ public class PissinInn extends Bank {
  
      // Profits || Currency
      private static int balance = Bank.userBalance;
-     private static int coinEarned = 0;
-     private static int userProfits = coinEarned + balance;
      private static int remainingBalance;
 //_______________________________________________________________________________________________________________
    
@@ -158,41 +156,59 @@ public class PissinInn extends Bank {
     
 //_______________________________________________________________________________________________________________
 
-    static void tranHandler(boolean loopCheck) {
-        displayDrinks(0);
-        System.out.println("[ Barkeep: So boy, what ale ye achin' for? (Enter Drink From Ale Menu Above) ] :");
+    static void buyDrinks(int drinkChoice) {
+        String chosenDrink = drinks[drinkChoice - 1]; // Adjust index by -1 since array index starts from 0
         boolean priceSearch = false;
-        int drinkChoice = tavernScan.nextInt();
-
-            while (!loopCheck) { // if drinkChoice is lower than or greater than any index within the array of drinks -> drinkchosen not matched
-                if (drinkChoice <= 0 || drinkChoice > drinks.length) {// if userchoice is invalid || out of range from options
-                    System.out.println("\n[Barkeep: Sorry mate that we don't serve that here, tell me another]: ");
-                    drinkChoice = tavernScan.nextInt(); // Ask for input again 
-                } else { // restarts array to 0, to give user another chance, including making match process not bias
-                    String chosenDrink = drinks[drinkChoice - 1]; // Adjust index by -1 since array index starts from 0
                     System.out.println("Chosen Drink: " + chosenDrink);
                     priceSearch = true;
                         if (priceSearch = true) {
                             switch(chosenDrink) { // Assigns price reduction according to drink (userbalance - drinkPrice) -> remaining balance
                                 case "Ol'Copper":
                                     remainingBalance = userBalance -= olCopperPrice;
+                                    break;
                                 case "Devil's Breath":
                                     remainingBalance = userBalance -= devilsBreathPrice;
+                                    break;
                                 case "Groslux Special":
                                     remainingBalance = userBalance -= grosluxSpecialPrice;
+                                    break;
                                 case "Nurgle's Nectar":
                                     remainingBalance = userBalance -= nurglesNectorPrice;
+                                    break;
                                 case "Pestilence's Promise":
                                     remainingBalance = userBalance -= pesilencePromisePrice;
+                                    break;
                                 case "Remedy Rum":
                                     remainingBalance = userBalance -= remedyRumPrice;
+                                    break;
                             }
                             System.out.println("[Alert: (Remaining Balance): " + remainingBalance + " ]");
-                            
-                        } loopCheck = true; // Set loopCheck to true to exit the loop
+                        }
+    }
+
+    static void tranHandler(boolean loopCheck) {
+        displayDrinks(0);
+        System.out.println("[ Barkeep: So boy, what ale ye achin' for? (Enter Drink From Ale Menu Above) ] :");
+        int drinkChoice;
+
+            while (!loopCheck) { // if drinkChoice is lower than or greater than any index within the array of drinks -> drinkchosen not matched
+                if (tavernScan.hasNextInt()) {
+                        drinkChoice = tavernScan.nextInt();
+                        if (drinkChoice <= 0 || drinkChoice > drinks.length) {// if userchoice is invalid || out of range from options
+                            System.out.println("\n[Barkeep: Sorry mate that we don't serve that here, tell me another]: ");
+                            drinkChoice = tavernScan.nextInt(); // Ask for input again 
+                        } else { // restarts array to 0, to give user another chance, including making match process not bias
+                                tavernScan.nextLine();
+                                buyDrinks(drinkChoice); // drinkchoice (here) -> input indicator in other method
+                                loopCheck = true;
+                        } 
+
+                } else {
+                    System.out.println("\n[Alert]: Sorry, that wasn't a valid choice (Number from Menu) ");
+                    tavernScan.nextLine(); // Clear the invalid input from the scanner buffer
                 }
             }
-}
+    }
  
     
     static void menu() {
