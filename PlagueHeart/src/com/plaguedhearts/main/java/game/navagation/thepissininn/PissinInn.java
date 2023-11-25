@@ -14,7 +14,7 @@ public class PissinInn extends Bank {
      *   Devil's Breath: 6 Coins
      *   Groslux Special: 10 Coins
      *   Nurgles Nectar: 5 Coins
-     *   Pesilence's Promise: 20 Coins
+    *   Pesilence's Promise: 20 Coins
      *   Remedy Rum: 15 Coins
      *   
      * 
@@ -84,29 +84,61 @@ public class PissinInn extends Bank {
         }
     }
     
+    static void drinkSelector(String foundDrinkStr) {
+
+    }
     static void tavernJob() { // Handles tavern job -> sends user to handle drinks, and display drinks
-        System.out.println("\n        [Mini Game]\n\n");
+        System.out.println("\n        [Tavern Job]\n\n");
         Scanner tavernScan = new Scanner(System.in);
         boolean servingDrinks = true;
     
         while (servingDrinks) { // will loop until servingDrinks booleans turns false
-            System.out.println("[ORDER]: " + PissinInn.customerDialogue());
-            System.out.println("[Answer(Mix) -> (Enter Any Input to Continue) Use H for help]: ");
-    
-            String userAnswer = tavernScan.nextLine();
-        
-                if (userAnswer.equalsIgnoreCase("help") || userAnswer.equalsIgnoreCase("h")) { // help menu
-                    displayDrinkMenuMix(0);
-                } else { 
-                    handleDrinkOrder(userAnswer);
-                }
-        
-            System.out.println("Do you want to continue serving drinks (Y/N)?");
-            String continueOption = tavernScan.nextLine();
+            String test = PissinInn.customerDialogue();
+            // System.out.println("[ORDER]: " + test);
+            // System.out.println(test);
+            Scanner drinkSc = new Scanner(test);
+            String foundDrinkStr;
+            while (drinkSc.hasNext()) { // checks each word within customer dialogue, to make sure if a drink is detected
+                String word = drinkSc.next();
+                System.out.println("Word: " + word);
+                // for loop works through one word each from the str var, due to while loop using scanner to loop through all strings in test var
+                    for (String drinkStr : drinks) { // searchs for keywords to a drink (exmp: Rum (Remedy Rum))
+                        if (drinkStr.contains(word)) {
+                            String wordFound = word;
+                            foundDrinkStr = wordFound;
+                            System.out.println("Found!: " + word);
+                            // Note: foundDrinkStr is being initilized in drinKSelector method to execute switch case, this is because whatever value is used here (found word), will be substituted in the methods use when being called
+                            //drinkSelector(foundDrinkStr);
+                            break; // breaks for loop
+                        }
 
-                if (!continueOption.equalsIgnoreCase("Y")) { // means continueOption stays false when user input is anything other than "Y", thus ending the loop
-                    servingDrinks = false;                                 // Y -> exit (stop serving drinks)
-                }
+                    }
+                    //break; // breaks drinkSc while loop once conditional (if statement) is done
+             }
+             servingDrinks = false; // breaks serving drinks while loop, (user chooses to stop serving drinks)
+
+
+                // for (int i = 0; i < drinks.length; i++) {
+                //     if (drinks[i].contains(test)) {
+
+                //     }
+                // }
+            // System.out.println("[Answer(Mix) -> (Enter Any Input to Continue) Use H for help]: ");
+    
+            // String userAnswer = tavernScan.nextLine();
+        
+            //     if (userAnswer.equalsIgnoreCase("help") || userAnswer.equalsIgnoreCase("h")) { // help menu
+            //         displayDrinkMenuMix(0);
+            //     } else { 
+            //         handleDrinkOrder(userAnswer);
+            //     }
+        
+            // System.out.println("Do you want to continue serving drinks (Y/N)?");
+            // String continueOption = tavernScan.nextLine();
+
+            //     if (!continueOption.equalsIgnoreCase("Y")) { // means continueOption stays false when user input is anything other than "Y", thus ending the loop
+            //         servingDrinks = false;                                 // Y -> exit (stop serving drinks)
+            //     }
         }
     
         tavernScan.close();
@@ -146,12 +178,12 @@ public class PissinInn extends Bank {
                 - Guess the correct mix
                 - Choose an appropiet option from the choice 
                 - (Nacht was too lazy to implment a search algorithm for pure input)
-
+                - Must get proper mix correct 3 times a row to gain a point (3 points to win)
             """
-            
         );
         showOptions();
-
+            
+            
     }
     
 //_______________________________________________________________________________________________________________

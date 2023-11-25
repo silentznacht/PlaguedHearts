@@ -15,5 +15,6 @@
         "Pissin",
         "RRECT"
     ],
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "workbench.colorTheme": "Absolute Black"
 }

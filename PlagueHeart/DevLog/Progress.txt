@@ -80,4 +80,10 @@ Things Learned
               will instead be called once and assigned (non change), this is fixed by instead deleting the dead variable and calling the method instead on 
               output
 
-        - 
+
+11.23.23
+
+    .ToString
+        - prints an array of elemsnts
+    .deepToString
+        - prints multidimensional array (2d, 3d)
