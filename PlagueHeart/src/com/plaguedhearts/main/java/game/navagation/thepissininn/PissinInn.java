@@ -80,13 +80,75 @@ public class PissinInn extends Bank {
         System.out.println("\n        [Mix Book: Drinks]\n");
         for (String drink : drinks) {
             drinkCount ++;
-            System.out.println(drinkCount + ") " + "(" + drink + ")");
+            System.out.println(drinkCount + ") " + "(" + drink + ")"); // 1) (drink)
         }
+    }
+
+    static void tavernGameInstructions() {
+        System.out.println(
+            """
+                        [Mini Game: Ready the Mix!]      
+            (Instructions: Below) 
+                - Guess the correct mix
+                - Choose an appropriate option from the choice 
+                - (Nacht was too lazy to implment a search algorithm for pure input)
+                - Must get proper mix correct 3 times a row to gain a point (3 points to win)
+            """
+        );
     }
     
     static void drinkSelector(String foundDrinkStr) {
-
+        String drinkFound;
+        for (int i = 0; i < drinks.length; i++) {
+                if (drinks[i].contains(foundDrinkStr)) { // searches for foundDrinkStr within drinks arr, then assigns the index of the element within the arr to a var
+                    drinkFound = drinks[i];
+                    System.out.println("Test1: " + drinkFound);
+                } 
+        }
     }
+
+    static void tavernGame(String foundDrinkStr) {
+        tavernGameInstructions();
+        System.out.println("\n[Enter Correct Mix Here ( H for help) ]");  
+        boolean gameInProgress = true;
+        String gameInput = tavernScan.nextLine();
+                // mini-game logic
+                    while (gameInProgress) { // while true (exits when user chooses to end game and turns gameInProgress false)
+                            if (gameInput.equalsIgnoreCase("h") || gameInput.equalsIgnoreCase("help")) {
+                                displayDrinkMenuMix(0);
+                            }
+
+                            //drinkSelector(foundDrinkStr);
+                            
+                    }
+    }
+
+
+    static void gameHandler (String foundDrinkStr) { // all same parameters (gameHandeler called in tavernJob, passes foundDrink, then passes same val to called drinkSelector)
+        //drinkSelector(foundDrinkStr);
+        tavernGame(foundDrinkStr);
+    }
+
+
+    static void handleDrinkOrder(String userAnswer) { // handles customers request for drinks, mix game for user
+        boolean drinkFound = false;
+    
+        for (String drink : drinks) { // if the user matches the customers requested drink then it will move onto the tavern mini game 
+            if (userAnswer.equalsIgnoreCase(drink)) {
+                drinkFound = true;
+                System.out.println("[Now Enter The Proper Mix For " + drink + " (Use H for help)]: ");
+                // Implement logic for mixing the drink here
+                //tavernMiniGame();
+                break;
+            }
+    }
+    
+        if (!drinkFound) {
+            System.out.println("\n[Alert: Sorry Invalid Answer]\n");
+        }
+    }
+
+    
     static void tavernJob() { // Handles tavern job -> sends user to handle drinks, and display drinks
         System.out.println("\n        [Tavern Job]\n\n");
         Scanner tavernScan = new Scanner(System.in);
@@ -103,26 +165,20 @@ public class PissinInn extends Bank {
                 System.out.println("Word: " + word);
                 // for loop works through one word each from the str var, due to while loop using scanner to loop through all strings in test var
                     for (String drinkStr : drinks) { // searchs for keywords to a drink (exmp: Rum (Remedy Rum))
-                        if (drinkStr.contains(word)) {
-                            String wordFound = word;
-                            foundDrinkStr = wordFound;
-                            System.out.println("Found!: " + word);
-                            // Note: foundDrinkStr is being initilized in drinKSelector method to execute switch case, this is because whatever value is used here (found word), will be substituted in the methods use when being called
-                            //drinkSelector(foundDrinkStr);
-                            break; // breaks for loop
-                        }
+                            if (drinkStr.contains(word)) {
+                                String wordFound = word;
+                                foundDrinkStr = wordFound;
+                                //System.out.println("Found!: " + word);
+                                // Note: foundDrinkStr is being initilized in drinKSelector method to execute switch case, this is because whatever value is used here (found word), will be substituted in the methods use when being called
+                                gameHandler(foundDrinkStr);
+                                break; // breaks for loop
+                            }
 
                     }
                     //break; // breaks drinkSc while loop once conditional (if statement) is done
              }
              servingDrinks = false; // breaks serving drinks while loop, (user chooses to stop serving drinks)
 
-
-                // for (int i = 0; i < drinks.length; i++) {
-                //     if (drinks[i].contains(test)) {
-
-                //     }
-                // }
             // System.out.println("[Answer(Mix) -> (Enter Any Input to Continue) Use H for help]: ");
     
             // String userAnswer = tavernScan.nextLine();
@@ -142,48 +198,6 @@ public class PissinInn extends Bank {
         }
     
         tavernScan.close();
-    }
-    
-    static void handleDrinkOrder(String userAnswer) { // handles customers request for drinks, mix game for user
-        boolean drinkFound = false;
-    
-        for (String drink : drinks) { // if the user matches the customers requested drink then it will move onto the tavern mini game 
-            if (userAnswer.equalsIgnoreCase(drink)) {
-                drinkFound = true;
-                System.out.println("[Now Enter The Proper Mix For " + drink + " (Use H for help)]: ");
-                // Implement logic for mixing the drink here
-                tavernMiniGame();
-                break;
-            }
-        }
-    
-        if (!drinkFound) {
-            System.out.println("\n[Alert: Sorry Invalid Answer]\n");
-        }
-    }
-
-    static void showOptions() {
-            for (String optStr : mixBookAnswers) {
-                    System.out.println(optStr);
-                    System.out.println("\n[Enter Chosen Option Here]");         
-            }
-    }
-
-    static void tavernMiniGame() {
-        // Implement your mini-game logic here
-        System.out.println(
-            """
-                        [Mini Game: Ready the Mix!]      
-            (Instructions: Below) 
-                - Guess the correct mix
-                - Choose an appropiet option from the choice 
-                - (Nacht was too lazy to implment a search algorithm for pure input)
-                - Must get proper mix correct 3 times a row to gain a point (3 points to win)
-            """
-        );
-        showOptions();
-            
-            
     }
     
 //_______________________________________________________________________________________________________________

@@ -7,7 +7,7 @@ public class NPC {
     public static String[] characters = {"Sir Reginald", "Lady Elara", "Barkeep", "Bard", "Winston", "Minerva", "Beatrix", "Severus"};
     public static String[] locations = {"in a dimly lit tavern", "by the roaring fireplace", "under the flickering candlelight", "under your mums tits"};
     public static String[] actions = {"says", "asks", "shouts", "whispers", "whales", "begs for a"};
-    public static String[] drinks = {"Ol'Copper", "Devil's Breath", "Groslux Special", "Nurgle's Nectar", "Pestilence's Promise", "Remedy Rum"};
+    public static String[] drinks = {"Ol'Copper", "Devil'Breath", "Groslux'Special", "Nurgle'Nectar", "Pestilence'Promise", "Remedy'Rum"};
 
     public static String[] topics = {
         "The dragon's hoard in the nearby cave",
