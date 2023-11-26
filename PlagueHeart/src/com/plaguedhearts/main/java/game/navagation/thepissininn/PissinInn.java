@@ -115,7 +115,7 @@ public class PissinInn extends Bank {
 
         for (int i = 0; i < drinks.length; i++) {
                 if (drinks[i].contains(foundDrinkStr)) { 
-                    drinkFoundIndex = i;
+                    drinkFoundIndex = i; 
                     System.out.println("index1: " + drinkFoundIndex + " drink: " + drinks[i]);
                     
                         for (int k = 0; k < mixBook.length;) { // (Correct mix matches according to drink index)
@@ -128,13 +128,19 @@ public class PissinInn extends Bank {
                                     displayMixOptions();
                                     int userChoice = tavernScan.nextInt();
                                     
-                                        if (mixBookAnswers[userChoice] == correctAnswer) { // condition needs work
-                                            System.out.println("Correcto!!!");
-                                            question = false;
-                                            break;
-                                        } else {
-                                           System.out.println("[Alert]: Sorry, Wrong Mix Try Again!"); 
+                                        if (userChoice > 0 && userChoice <= mixBookAnswers.length) {
+                                            int correctIndex = drinkFoundIndex; // Assuming the index matches between drinks and mixBookAnswers
+                                            int userIndex = userChoice - 1; // Adjust for zero-based index
+                                            
+                                            if (userIndex == correctIndex) { // compares two indexes correctIndex(synced with drink and mixAnswer arr)
+                                                System.out.println("Correcto!!!");
+                                                question = false;
+                                                break;
+                                        }    else {
+                                                System.out.println("[Alert]: Sorry, Wrong Mix Try Again!"); 
+                                            }
                                         }
+                                        
                                 }
                                 break;
                         } 
