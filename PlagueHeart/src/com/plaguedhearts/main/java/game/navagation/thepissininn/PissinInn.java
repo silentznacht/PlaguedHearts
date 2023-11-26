@@ -84,6 +84,13 @@ public class PissinInn extends Bank {
         }
     }
 
+    static void displayMixOptions() {
+        for (String mix : mixBookAnswers) {
+            System.out.println(mix);
+        }
+        System.out.println("\n[Enter Answer Here]: ");
+    }
+
     static void tavernGameInstructions() {
         System.out.println(
             """
@@ -97,29 +104,64 @@ public class PissinInn extends Bank {
         );
     }
     
-    static void drinkSelector(String foundDrinkStr) {
-        String drinkFound;
+    static void drinkSelector(String foundDrinkStr, String gameInput) {
+        int drinkFoundIndex;
+        int mixBookIndex;
+        String correctAnswer;
+        boolean question = true;
+
+        // searches if drink from customer matches drinks arr, then assigns the index within the drinks arr to drinkFoundIndex, then inner
+        // for-loop used to assign correctAnswer var to the same index of drinks arr, then proceeding to userQuestion segment
+
         for (int i = 0; i < drinks.length; i++) {
-                if (drinks[i].contains(foundDrinkStr)) { // searches for foundDrinkStr within drinks arr, then assigns the index of the element within the arr to a var
-                    drinkFound = drinks[i];
-                    System.out.println("Test1: " + drinkFound);
-                } 
+                if (drinks[i].contains(foundDrinkStr)) { 
+                    drinkFoundIndex = i;
+                    System.out.println("index1: " + drinkFoundIndex + " drink: " + drinks[i]);
+                    
+                        for (int k = 0; k < mixBook.length;) { // (Correct mix matches according to drink index)
+                            mixBookIndex = k;
+                            correctAnswer = mixBook[drinkFoundIndex];
+                            System.out.println("Correct Answer: " + correctAnswer);
+
+                                while (question) {
+                                    System.out.println("\n[Enter Correct Mix Here For " + foundDrinkStr + "]");
+                                    displayMixOptions();
+                                    int userChoice = tavernScan.nextInt();
+                                    
+                                        if (mixBookAnswers[userChoice] == correctAnswer) { // condition needs work
+                                            System.out.println("Correcto!!!");
+                                            question = false;
+                                            break;
+                                        } else {
+                                           System.out.println("[Alert]: Sorry, Wrong Mix Try Again!"); 
+                                        }
+                                }
+                                break;
+                        } 
+                }
         }
+
+
     }
 
     static void tavernGame(String foundDrinkStr) {
+
+        tavernScan.nextLine(); // consumes line (fix for previous crash)
         tavernGameInstructions();
-        System.out.println("\n[Enter Correct Mix Here ( H for help) ]");  
+        System.out.println("\n[ Game Start [Press Anything to Start] (H for help) ]");  
         boolean gameInProgress = true;
         String gameInput = tavernScan.nextLine();
+
                 // mini-game logic
                     while (gameInProgress) { // while true (exits when user chooses to end game and turns gameInProgress false)
+
                             if (gameInput.equalsIgnoreCase("h") || gameInput.equalsIgnoreCase("help")) {
                                 displayDrinkMenuMix(0);
+                                gameInProgress = false;
+                            } else {
+                                drinkSelector(foundDrinkStr, gameInput);
+                                gameInProgress = false;
                             }
-
-                            //drinkSelector(foundDrinkStr);
-                            
                     }
     }
 
@@ -141,11 +183,12 @@ public class PissinInn extends Bank {
                 //tavernMiniGame();
                 break;
             }
-    }
+        }
     
         if (!drinkFound) {
             System.out.println("\n[Alert: Sorry Invalid Answer]\n");
         }
+
     }
 
     
@@ -156,19 +199,15 @@ public class PissinInn extends Bank {
     
         while (servingDrinks) { // will loop until servingDrinks booleans turns false
             String test = PissinInn.customerDialogue();
-            // System.out.println("[ORDER]: " + test);
-            // System.out.println(test);
             Scanner drinkSc = new Scanner(test);
             String foundDrinkStr;
             while (drinkSc.hasNext()) { // checks each word within customer dialogue, to make sure if a drink is detected
                 String word = drinkSc.next();
-                System.out.println("Word: " + word);
                 // for loop works through one word each from the str var, due to while loop using scanner to loop through all strings in test var
                     for (String drinkStr : drinks) { // searchs for keywords to a drink (exmp: Rum (Remedy Rum))
                             if (drinkStr.contains(word)) {
                                 String wordFound = word;
                                 foundDrinkStr = wordFound;
-                                //System.out.println("Found!: " + word);
                                 // Note: foundDrinkStr is being initilized in drinKSelector method to execute switch case, this is because whatever value is used here (found word), will be substituted in the methods use when being called
                                 gameHandler(foundDrinkStr);
                                 break; // breaks for loop
@@ -178,23 +217,6 @@ public class PissinInn extends Bank {
                     //break; // breaks drinkSc while loop once conditional (if statement) is done
              }
              servingDrinks = false; // breaks serving drinks while loop, (user chooses to stop serving drinks)
-
-            // System.out.println("[Answer(Mix) -> (Enter Any Input to Continue) Use H for help]: ");
-    
-            // String userAnswer = tavernScan.nextLine();
-        
-            //     if (userAnswer.equalsIgnoreCase("help") || userAnswer.equalsIgnoreCase("h")) { // help menu
-            //         displayDrinkMenuMix(0);
-            //     } else { 
-            //         handleDrinkOrder(userAnswer);
-            //     }
-        
-            // System.out.println("Do you want to continue serving drinks (Y/N)?");
-            // String continueOption = tavernScan.nextLine();
-
-            //     if (!continueOption.equalsIgnoreCase("Y")) { // means continueOption stays false when user input is anything other than "Y", thus ending the loop
-            //         servingDrinks = false;                                 // Y -> exit (stop serving drinks)
-            //     }
         }
     
         tavernScan.close();
