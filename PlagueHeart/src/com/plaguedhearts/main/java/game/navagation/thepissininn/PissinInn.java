@@ -92,7 +92,7 @@ public class PissinInn extends Bank {
     }
 
     static void tavernGameInstructions() {
-        System.out.println(
+        System.out.println( // TODO: Redo instructions, update rules for each game
             """
                         [Mini Game: Ready the Mix!]      
             (Instructions: Below) 
@@ -104,9 +104,40 @@ public class PissinInn extends Bank {
         );
     }
     
-    static void drinkSelector(String foundDrinkStr, String gameInput) {
+    static void userContinue() {
+        tavernScan.nextLine();
+        System.out.println(
+                """
+                                [Tavern Games (EXTRA COINS!!!)]
+                        
+                1. [DrinkSelector (Mix Edition)]
+                2. [Coming Soon]
+                3. [Coming Soon]
+
+                [Enter Game Choice Here]: 
+                """
+        );
+        String userContinue = tavernScan.nextLine();
+        boolean keepLooping = true;
+
+        while (keepLooping) {
+            if (userContinue.equalsIgnoreCase("yes") || userContinue.equalsIgnoreCase("y")) {
+                gameHandler(userContinue);
+                keepLooping = false;
+            } else if (userContinue.equalsIgnoreCase("no") || userContinue.equalsIgnoreCase("n")) {
+                System.out.println("[Alert]: (Very well, :) ");
+                menu();
+                keepLooping = false;
+            } else {
+                 System.out.println("[Alert]: (Sorry Invalid Choice)");
+            }
+
+        }
+
+    }
+
+    static void drinkSelectorMixGame(String foundDrinkStr, String gameInput) {
         int drinkFoundIndex;
-        int mixBookIndex;
         String correctAnswer;
         boolean question = true;
 
@@ -119,7 +150,6 @@ public class PissinInn extends Bank {
                     System.out.println("index1: " + drinkFoundIndex + " drink: " + drinks[i]);
                     
                         for (int k = 0; k < mixBook.length;) { // (Correct mix matches according to drink index)
-                            mixBookIndex = k;
                             correctAnswer = mixBook[drinkFoundIndex];
                             System.out.println("Correct Answer: " + correctAnswer);
 
@@ -129,14 +159,21 @@ public class PissinInn extends Bank {
                                     int userChoice = tavernScan.nextInt();
                                     
                                         if (userChoice > 0 && userChoice <= mixBookAnswers.length) {
-                                            int correctIndex = drinkFoundIndex; // Assuming the index matches between drinks and mixBookAnswers
+                                            int correctIndex = drinkFoundIndex; // Athe index matches between drinks and mixBookAnswers
                                             int userIndex = userChoice - 1; // Adjust for zero-based index
                                             
                                             if (userIndex == correctIndex) { // compares two indexes correctIndex(synced with drink and mixAnswer arr)
+                                                /*
+                                                 * Next:
+                                                 *      - Implement search algorithm for paying user appropriately
+                                                 *          - rewards user the coin customer pays for a drink after a request is done
+                                                 *      - Fix loop, to determine whether if user wants to keep working or not
+                                                 *
+                                                 */
                                                 System.out.println("Correcto!!!");
                                                 question = false;
                                                 break;
-                                        }    else {
+                                            } else {
                                                 System.out.println("[Alert]: Sorry, Wrong Mix Try Again!"); 
                                             }
                                         }
@@ -150,7 +187,7 @@ public class PissinInn extends Bank {
 
     }
 
-    static void tavernGame(String foundDrinkStr) {
+    static void tavernGameMenu(String foundDrinkStr) {
 
         tavernScan.nextLine(); // consumes line (fix for previous crash)
         tavernGameInstructions();
@@ -165,7 +202,7 @@ public class PissinInn extends Bank {
                                 displayDrinkMenuMix(0);
                                 gameInProgress = false;
                             } else {
-                                drinkSelector(foundDrinkStr, gameInput);
+                                drinkSelectorMixGame(foundDrinkStr, gameInput);
                                 gameInProgress = false;
                             }
                     }
@@ -173,8 +210,14 @@ public class PissinInn extends Bank {
 
 
     static void gameHandler (String foundDrinkStr) { // all same parameters (gameHandeler called in tavernJob, passes foundDrink, then passes same val to called drinkSelector)
-        //drinkSelector(foundDrinkStr);
-        tavernGame(foundDrinkStr);
+        /*
+         *                                          [Next]
+         *            - Allow a workflow, allows user to keep on playing the game or quit
+         *            - Implement more games to allow a variety of options to allow user to play different games for coin
+         *            - 
+         */
+        
+        tavernGameMenu(foundDrinkStr);
     }
 
 
@@ -214,6 +257,7 @@ public class PissinInn extends Bank {
                             if (drinkStr.contains(word)) {
                                 String wordFound = word;
                                 foundDrinkStr = wordFound;
+                                System.out.println("WordFound: " + foundDrinkStr);
                                 // Note: foundDrinkStr is being initilized in drinKSelector method to execute switch case, this is because whatever value is used here (found word), will be substituted in the methods use when being called
                                 gameHandler(foundDrinkStr);
                                 break; // breaks for loop
