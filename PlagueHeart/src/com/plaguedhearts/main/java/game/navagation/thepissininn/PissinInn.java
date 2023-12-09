@@ -90,25 +90,27 @@ public class PissinInn extends Bank {
         }
         System.out.println("\n[Enter Answer Here]: ");
     }
-
-    static void tavernGameInstructions() {
+//_______________________________________________________________________________________________________________
+    
+    static void tavernGameInstructionsMix() { // GAME 1 Instructions
         System.out.println( // TODO: Redo instructions, update rules for each game
             """
                         [Mini Game: Ready the Mix!]      
             (Instructions: Below) 
                 - Guess the correct mix
-                - Choose an appropriate option from the choice 
-                - (Nacht was too lazy to implment a search algorithm for pure input)
-                - Must get proper mix correct 3 times a row to gain a point (3 points to win)
+                - Choose an appropriate option from the choices given below  
+                - Get a correct mix MONIE! MONIE!! MONIESSS!!!!
             """
         );
     }
+
     
-    static void userContinue() {
+    
+    static void tavernGameMenu(String foundDrinkStr) {
         tavernScan.nextLine();
         System.out.println(
                 """
-                                [Tavern Games (EXTRA COINS!!!)]
+                                [Tavern Games (EXTRA C0INS!!!)]
                         
                 1. [DrinkSelector (Mix Edition)]
                 2. [Coming Soon]
@@ -117,22 +119,28 @@ public class PissinInn extends Bank {
                 [Enter Game Choice Here]: 
                 """
         );
-        String userContinue = tavernScan.nextLine();
+        
+        int userContinue = tavernScan.nextInt();
         boolean keepLooping = true;
 
-        while (keepLooping) {
-            if (userContinue.equalsIgnoreCase("yes") || userContinue.equalsIgnoreCase("y")) {
-                gameHandler(userContinue);
-                keepLooping = false;
-            } else if (userContinue.equalsIgnoreCase("no") || userContinue.equalsIgnoreCase("n")) {
-                System.out.println("[Alert]: (Very well, :) ");
-                menu();
-                keepLooping = false;
-            } else {
-                 System.out.println("[Alert]: (Sorry Invalid Choice)");
-            }
+            while (keepLooping) {
+                    switch (userContinue) {
+                        case 1:
+                            // Game1
+                            
+                            break;
+                        case 2:
+                            // Game2:
+                            break;
+                        case 3:
+                            // Game3
+                        
+                        default:
+                            System.out.println("[Alert]: Invalid Choice Inputted");
 
-        }
+                    }
+
+            }
 
     }
 
@@ -187,11 +195,11 @@ public class PissinInn extends Bank {
 
     }
 
-    static void tavernGameMenu(String foundDrinkStr) {
+    static void tavernGameStart(String foundDrinkStr) {
 
         tavernScan.nextLine(); // consumes line (fix for previous crash)
-        tavernGameInstructions();
-        System.out.println("\n[ Game Start [Press Anything to Start] (H for help) ]");  
+        tavernGameInstructionsMix();
+        System.out.println("\n[ (GameStart) [Press Anything to Start] (H for help) ]");  
         boolean gameInProgress = true;
         String gameInput = tavernScan.nextLine();
 
@@ -219,27 +227,6 @@ public class PissinInn extends Bank {
         
         tavernGameMenu(foundDrinkStr);
     }
-
-
-    static void handleDrinkOrder(String userAnswer) { // handles customers request for drinks, mix game for user
-        boolean drinkFound = false;
-    
-        for (String drink : drinks) { // if the user matches the customers requested drink then it will move onto the tavern mini game 
-            if (userAnswer.equalsIgnoreCase(drink)) {
-                drinkFound = true;
-                System.out.println("[Now Enter The Proper Mix For " + drink + " (Use H for help)]: ");
-                // Implement logic for mixing the drink here
-                //tavernMiniGame();
-                break;
-            }
-        }
-    
-        if (!drinkFound) {
-            System.out.println("\n[Alert: Sorry Invalid Answer]\n");
-        }
-
-    }
-
     
     static void tavernJob() { // Handles tavern job -> sends user to handle drinks, and display drinks
         System.out.println("\n        [Tavern Job]\n\n");
@@ -306,19 +293,34 @@ public class PissinInn extends Bank {
 
     static void tranHandler(boolean loopCheck) {
         displayDrinks(0);
+        int [] drinkPriceArr = {olCopperPrice, devilsBreathPrice, grosluxSpecialPrice, nurglesNectorPrice, pesilencePromisePrice, remedyRumPrice};
         System.out.println("[ Barkeep: So boy, what ale ye achin' for? (Enter Drink From Ale Menu Above) ] :");
         int drinkChoice;
 
+        // Implement block feature (if user balance is less than drink cost)
             while (!loopCheck) { // if drinkChoice is lower than or greater than any index within the array of drinks -> drinkchosen not matched
-                if (tavernScan.hasNextInt()) {
+                if (tavernScan.hasNextInt()) { 
                         drinkChoice = tavernScan.nextInt();
+
                         if (drinkChoice <= 0 || drinkChoice > drinks.length) {// if userchoice is invalid || out of range from options
                             System.out.println("\n[Barkeep: Sorry mate that we don't serve that here, tell me another]: ");
                             drinkChoice = tavernScan.nextInt(); // Ask for input again 
                         } else { // restarts array to 0, to give user another chance, including making match process not bias
-                                tavernScan.nextLine();
-                                buyDrinks(drinkChoice); // drinkchoice (here) -> input indicator in other method
-                                loopCheck = true;
+                                
+                                for (int i = 0; i < drinks.length; i++) {
+                                    if (drinks[i] == drinks[drinkChoice - 1]) { // if user request matches drink in arr
+                                        for (int k = 0; k < drinkPriceArr.length; k++) { // checks if user can buy drink
+                                            if () {
+                                                
+                                            }
+                                        }   
+                                    }
+                                }
+
+                                // In case on revert
+                                // tavernScan.nextLine();
+                                // buyDrinks(drinkChoice); // drinkchoice (here) -> input indicator in other method
+                                // loopCheck = true;
                         } 
 
                 } else {

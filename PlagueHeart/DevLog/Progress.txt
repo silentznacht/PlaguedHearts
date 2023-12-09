@@ -87,3 +87,28 @@ Things Learned
         - prints an array of elemsnts
     .deepToString
         - prints multidimensional array (2d, 3d)
+
+
+                    [GAME WORKFLOW]
+
+                - TavernJob (foundDrinkStr passed to GameHandler parameters)
+                    - Game Handler (foundDrinkStr passed to )
+                        - TavernGameMenu (uses founddrinkStr -> will use in all games that are selected by user)
+                            - game 1 ? game2 ? game3
+                                - instructions for all games
+
+                
+                    [BUY WORKFLOW]
+
+                - transaction handler    
+                    - buy drink   
+                        - user balance check
+                            - search algo to subtract appropriate cost of drink from user balance                
+                
+                
+                [Tavern WorkFlow]
+
+                - Menu
+                    - BuyDrinks 
+                    - Extra Coin
+                        - Gameworkflow
