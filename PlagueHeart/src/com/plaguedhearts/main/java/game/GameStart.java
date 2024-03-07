@@ -18,6 +18,7 @@ public class GameStart implements Runnable {
 
         System.out.println("Working!");
         thread.start(); // Start a new thread to execute the run method
+        
     }
 
     public void stop() {

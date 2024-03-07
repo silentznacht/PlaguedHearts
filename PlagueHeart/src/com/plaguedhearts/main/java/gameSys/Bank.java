@@ -7,7 +7,7 @@ public class Bank {
     protected static int userOverallBalance;
 
     public Bank(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
-        Bank.userBalance = userBalance;
+        Bank.userBalance = userBalance; // side quest += 100 coins 
         Bank.userCredits = userCredits;
         Bank.userPoints = userPoints;
         Bank.userOverallBalance = userOverallBalance;

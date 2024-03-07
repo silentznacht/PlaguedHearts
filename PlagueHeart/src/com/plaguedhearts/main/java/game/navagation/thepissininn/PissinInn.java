@@ -4,7 +4,7 @@ import java.util.*;
 import main.java.game.dialogue.NPC;
 import main.java.gamesys.Bank;
 
-public class PissinInn extends Bank {
+public class PissinInn implements Runnable {
     /*
      *              Day Quota
      *       Attend to 5 customers, and reach 100 coins by the end of day 1
@@ -22,11 +22,6 @@ public class PissinInn extends Bank {
      * TODO: Use switch case to sort out user input
      */
     
-     public PissinInn(int userBalance, int userCredits, int userPoints, int userOverallBalance) {
-        super(userBalance, userCredits, userPoints, userOverallBalance);
-        //TODO Auto-generated constructor stub
-     }
-    
      // Prices 
      private static int olCopperPrice = 4;
      private static int devilsBreathPrice = 6;
@@ -38,6 +33,7 @@ public class PissinInn extends Bank {
      // Scanner & characters, drinks, actions, questions, answers, etc (randomized)
      private static Random random = new Random();
      private static Scanner tavernScan = new Scanner(System.in);
+
      private static String [] drinks  = NPC.drinks;
      private static String [] characters = NPC.characters;
      private static String [] actions = NPC.actions;
@@ -48,7 +44,7 @@ public class PissinInn extends Bank {
      private static String [] insults = NPC.drinkRelatedInsults;
  
      // Profits || Currency
-     private static int balance = -100; //Bank.userBalance;
+     private static int balance = 100; //Bank.userBalance;
      private static int remainingBalance;
 //_______________________________________________________________________________________________________________
    
@@ -185,9 +181,10 @@ public class PissinInn extends Bank {
                                             }
                                         }
                                         
-                                }
+                                } 
                                 break;
                         } 
+
                 }
         }
 
@@ -239,7 +236,7 @@ public class PissinInn extends Bank {
             while (drinkSc.hasNext()) { // checks each word within customer dialogue, to make sure if a drink is detected
                 String word = drinkSc.next();
                 // for loop works through one word each from the str var, due to while loop using scanner to loop through all strings in test var
-                    for (String drinkStr : drinks) { // searchs for keywords to a drink (exmp: Rum (Remedy Rum))
+                    for (String drinkStr : drinks) { // searchs 8iufor keywords to a drink (exmp: Rum (Remedy Rum))
                             if (drinkStr.contains(word)) {
                                 String wordFound = word;
                                 foundDrinkStr = wordFound;
@@ -315,14 +312,14 @@ public class PissinInn extends Bank {
                                 for (int i = 0; i < drinks.length; i++) {
                                     int temp1Index = i;
                                         if (drinks[i] == drinks[drinkChoice - 1]) { // if user request matches drink in arr || userInput (5 - 1 -> indexvalue: 4) || input => index position within arr
-                                            // System.out.println("InputDrinkFound: " + drinkChoice + " TestCase: " + drinks[i]); // debug test
+                                             System.out.println("InputDrinkFound: " + drinkChoice + " TestCase: " + drinks[i]); // debug test
                                                 for (int k = 0; k < drinkPriceArr.length; k++) { // checks if user can buy drink
                                                     // test
                                                     int temp2Index = k;
-
+     
                                                         if (balance >= temp2Index) { // tells us if user can afford drink requested
                                                                 if (temp1Index == temp2Index) {
-                                                                    System.out.println("i: " + i + " k:" + k);
+                                                                    //System.out.println("i: " + i + " k:" + k);
                                                                     drinkIndexContainer = drinks[i];
                                                                     buyDrinks(drinkChoice, drinkIndexContainer);
                                                                     loopCheck = true;
@@ -357,6 +354,7 @@ public class PissinInn extends Bank {
  
     
     static void menu() {
+
         System.out.println (
             """
                                     [The Pissin' Inn] 
@@ -371,24 +369,39 @@ public class PissinInn extends Bank {
             """
         );
 
-        int menuChoice = tavernScan.nextInt();
-            switch(menuChoice) {
-                case 1:
-                    tranHandler(false, "");
-                    break;
-                case 2:
-                    tavernJob();
-                    break;
-                case 3:
-                    System.exit(0);
-                    break;
-            }
+        boolean menuLoop = true;
 
+        int menuChoice = tavernScan.nextInt();
+        
+        while(menuLoop) {
+            if (menuLoop) {
+                    switch(menuChoice) {
+                        case 1:
+                            tranHandler(false, "");
+                            menuLoop = false;
+                            break;
+                        case 2:
+                            tavernJob();
+                            menuLoop = false;
+                            break;
+                        case 3:
+                            System.exit(0);
+                            menuLoop = false;
+                            break;
+                    }       
+
+            } else {
+                    System.out.println("\n(Barkeep): Sorry boyo, that ain't an option in our fine establishment. Try again: ");
+            }
+        }
 
 
     }
-     public static void main(String [] args) { 
-            menu();
-     }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        menu();
+    }
 
 }
