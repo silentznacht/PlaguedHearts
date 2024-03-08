@@ -95,11 +95,11 @@ public class Menu implements Runnable {
     
     /*
      *                      TODO
-     *         [Redo Menu]
-     *              - new game -> character creation
-     *              - continue -> saved data
-     *              - exit -> exit game()
-     *              - settings -> adjust enemy difficulties
+        *         [Redo Menu]
+        *              - new game -> character creation
+        *              - continue -> saved data
+        *              - exit -> exit game()
+        *              - settings -> adjust enemy difficulties
      */
     private static void entrySaveLog (String name) {
         // Formats Time (For user entry log)
@@ -108,7 +108,7 @@ public class Menu implements Runnable {
          String formattedDateTime = currentDateTime.format(formatter);
         
         // Saves user name/choices and time to entry logs
-        String filePath = "C:/PlagueHeart/src/com/plaguedhearts/main/java/savedlogs/entry.txt";
+        String filePath = "PlagueHeart/src/com/plaguedhearts/main/java/savedlogs/entry.txt";
         String entry = name + " :" + formattedDateTime;
 
          try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
