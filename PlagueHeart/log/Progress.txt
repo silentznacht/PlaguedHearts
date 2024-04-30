@@ -1,0 +1,103 @@
+10/15/23
+
+Originally this game was called Grimore, I truly wanted to make this work
+but sooner than later my interest grew stagnant. My passion for such a 
+project was in decline, and so I aim to revive this project as PlaguedHearts.
+
+10/18/23
+
+I hate school, I wish I could be talented like the other developers, I wish 
+I could just graduate already and just focus on doing things that are actually
+impactful to my life, things I could genuinely enjoy while bettering the world.
+
+Abstract Classes Implemented
+    - Potions
+        - LargeHP
+        - LargeMP
+    - Weapons
+        - BlackFyre
+        - Frostmourne
+    - Balance
+        - Bank
+            - Withdraw
+            - Deposit
+    - Armor
+        - HeavySteel
+        - LightLeather
+        - ScholarsRobes
+    - Attributes 
+        - Charisma
+        - Health
+        - Mana
+        - Stamina 
+
+Tests Implemented (DMG) 
+    - BlackFyreT
+    - FrostT
+
+
+Bank Foundation
+    - Deposit
+        - userBalance
+
+    - Withdraw
+        - userBalance
+            - userBalance -= 
+                - WithdrawAmount
+                - WithdrawRequest
+    - Currency (idk)
+
+
+
+11/16/23
+
+Bug Fixes
+    - KravenWares (menu invalid displays)
+        - menu loop kept continuing
+            - FIXED: break statement used to end loop move to following method
+        - transaction handler invalidity (no item found error loop & insufficent funds)
+            - adds sc.nextLine() above loop to consume line before jump
+                - FUCKING BULLSHIT THAT BUG TOOK 3 FUCKING WEEKS JUST FOR ONE LINE FUCKING BULLSHIT TO THE HIGHEST DEGREE
+                    - Only god knows what ever the fuck is going on in that shop file
+
+11/20/23
+
+Things Learned
+    - PissinInn(customer change)
+        - I was cnofused why customer dialogue was not being generated randomly, everytime the user wishes to answer a customer or use the mixbook
+            - (ISSUE) I was using a variable and assigned the method generating dialogue onto the variable, meaning the value being returned in the method
+              will instead be called once and assigned (non change), this is fixed by instead deleting the dead variable and calling the method instead on 
+              output
+
+
+11.23.23
+
+    .ToString
+        - prints an array of elemsnts
+    .deepToString
+        - prints multidimensional array (2d, 3d)
+
+
+                    [GAME WORKFLOW]
+
+                - TavernJob (foundDrinkStr passed to GameHandler parameters)
+                    - Game Handler (foundDrinkStr passed to )
+                        - TavernGameMenu (uses founddrinkStr -> will use in all games that are selected by user)
+                            - game 1 ? game2 ? game3
+                                - instructions for all games
+
+                
+                    [BUY WORKFLOW]
+
+                - transaction handler    
+                    - buy drink   
+                        - user balance check
+                            - search algo to subtract appropriate cost of drink from user balance                
+                
+                
+                [Tavern WorkFlow]
+
+                - Menu
+                    - BuyDrinks 
+                    - Extra Coin
+                        - Gameworkflow
